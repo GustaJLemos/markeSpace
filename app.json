@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "markeSpace",
+    "slug": "markeSpace",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
