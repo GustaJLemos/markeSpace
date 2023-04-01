@@ -1,12 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider, Box } from 'native-base';
+import { Box, NativeBaseProvider, StatusBar, useTheme } from 'native-base';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { Providers } from './src/contexts/Providers';
+import { useFonts, Karla_700Bold, Karla_400Regular } from '@expo-google-fonts/karla';
+import { SignIn } from './src/screens/SignIn';
+import { Loading } from './src/components/Loading';
+import { SignUp } from './src/screens/SignUp';
 
 export default function App() {
+  const [ fontsLoaded ] = useFonts({ Karla_400Regular, Karla_700Bold });
+
   return (
-    <NativeBaseProvider>
-      <Box>Hello world</Box>
-    </NativeBaseProvider>
+    <Providers>
+      {fontsLoaded ? (
+        <SignUp />
+      ) : <Loading />}
+    </Providers>
   );
 }
