@@ -16,10 +16,6 @@ import { Button } from '../components/Button';
 */}
 
 export function SignUp() {
-  useEffect(() => {
-    console.log("SignUp'")
-  }, [])
-
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
