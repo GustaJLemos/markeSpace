@@ -1,18 +1,19 @@
 import { Image, Center, IImageProps, useTheme } from 'native-base';
 import React from 'react';
 import { PencilSimpleLine } from 'phosphor-react-native';
-import { StyleSheet, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { ImageSourcePropType, StyleSheet, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { THEME } from '../theme';
 
 type Props = IImageProps & {
+  showPencil?: boolean;
 }
 
-export function UserPhoto({ size, ...rest }: Props) {
+export function UserPhoto({ size, showPencil = true, ...rest }: Props) {
   const { colors } = THEME;
 
   return (
     <Center
-      w='24'
+      w={size ? size : '24'}
       py='1'
     >
       <Image
@@ -24,12 +25,14 @@ export function UserPhoto({ size, ...rest }: Props) {
         bg='blue.light'
         {...rest}
       />
-      <TouchableOpacity
-        activeOpacity={0.9}
-        style={[styles.button, { backgroundColor: colors.blue.light }]}
-      >
-        <PencilSimpleLine color='white' size={18} />
-      </TouchableOpacity>
+      {showPencil && (
+        <TouchableOpacity
+          activeOpacity={0.9}
+          style={[styles.button, { backgroundColor: colors.blue.light }]}
+        >
+          <PencilSimpleLine color='white' size={18} />
+        </TouchableOpacity>
+      )}
     </Center>
   );
 }
