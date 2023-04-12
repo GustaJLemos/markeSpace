@@ -1,7 +1,7 @@
 import { Box, HStack, IIconProps, Text, VStack } from "native-base";
 import { Button } from "../components/Button";
 import { HomeHeader } from "../components/HomeHeader";
-import { AdvertisedProducts } from "../components/advertisedProducts";
+import { AdvertisedProducts } from "../components/AdvertisedProducts";
 
 export function Home() {
 	return (
