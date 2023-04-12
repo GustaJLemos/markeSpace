@@ -13,7 +13,8 @@ export const THEME = extendTheme({
     },
     blue: {
       default: '#364D9D',
-      light: '#647AC7'
+      light: '#647AC7',
+      withOpacity: 'rgba(100, 122, 199, 01)'
     },
     red: {
       light: '#EE7979'
