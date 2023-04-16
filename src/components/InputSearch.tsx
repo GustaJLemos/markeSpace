@@ -6,7 +6,11 @@ import { TouchableOpacity } from "react-native";
 
 const HIT_SLOP_SIZE = { bottom: 20, left: 20, right: 20, top: 20 }
 
-export function InputSearch() {
+type Props = {
+  onFiltersPress: () => void;
+}
+
+export function InputSearch({ onFiltersPress }: Props) {
   const { colors } = useTheme();
 
   return (
@@ -31,7 +35,7 @@ export function InputSearch() {
           />
         </TouchableOpacity>
         <Divider color={'red.700'} bgColor={'gray.400'} minH='6' size='0.5' mx='3' />
-        <TouchableOpacity hitSlop={HIT_SLOP_SIZE} onPress={() => { }}>
+        <TouchableOpacity hitSlop={HIT_SLOP_SIZE} onPress={onFiltersPress}>
           <Sliders weight="bold" size={26} color={colors.gray[200]} />
         </TouchableOpacity>
       </HStack>
