@@ -4,6 +4,7 @@ import { UserPhoto } from "./UserPhoto";
 import SaleImgExPng from '../assets/saleImgEx.png';
 import UserExPng from '../assets/user.png';
 import { CardForSaleType } from "../types/CardForSale";
+import { CategoryTag } from './categoryTag';
 
 // TODO colocar as tipagens
 type Props = {
@@ -37,23 +38,9 @@ export function CardForSale({ product: { title, price, category } }: Props) {
             source={UserExPng}
             showPencil={false}
           />
-          <Box
-            h='5'
-            rounded='full'
-            justifyContent='center'
-            bg={category === 'new' ? 'blue.light' : 'gray.200'}
-            mt='1'
-            px='2'
-          >
-            <Text
-              color='gray.700'
-              fontSize='10'
-              fontFamily='heading'
-              textTransform='uppercase'
-            >
-              {category === 'new' ? 'novo' : 'usado'}
-            </Text>
-          </Box>
+          <CategoryTag
+            category={category}
+          />
         </HStack>
         {/* Todo criar os componentes de perfil e de usado */}
       </Box>
