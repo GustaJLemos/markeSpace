@@ -30,7 +30,7 @@ export function InputSearch() {
             size='5'
           />
         </TouchableOpacity>
-        <Divider color={'red.700'} bgColor={'gray.400'} minH='full' size='0.5' mx='3' />
+        <Divider color={'red.700'} bgColor={'gray.400'} minH='6' size='0.5' mx='3' />
         <TouchableOpacity hitSlop={HIT_SLOP_SIZE} onPress={() => { }}>
           <Sliders weight="bold" size={26} color={colors.gray[200]} />
         </TouchableOpacity>
