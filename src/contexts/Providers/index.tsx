@@ -10,14 +10,14 @@ type Props = {
 
 export function Providers({ children }: Props) {
   return (
-    <SafeAreaProvider style={{ flex: 1 }}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider style={{ flex: 1 }}>
         <NativeBaseProvider theme={THEME}>
           <SafeAreaView>
             {children}
           </SafeAreaView>
         </NativeBaseProvider>
-      </GestureHandlerRootView>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
