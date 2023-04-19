@@ -1,4 +1,4 @@
-import { Box, Divider, FlatList, HStack, IIconProps, Icon, Text, VStack } from "native-base";
+import { Box, Divider, FlatList, HStack, IIconProps, Icon, Text, VStack, useTheme } from "native-base";
 import { Button } from "../components/Button";
 import { HomeHeader } from "../components/HomeHeader";
 import { AdvertisedProducts } from "../components/AdvertisedProducts";
@@ -9,6 +9,7 @@ import { useMemo, useRef } from "react";
 import BottomSheet from '@gorhom/bottom-sheet';
 import { AntDesign } from '@expo/vector-icons';
 import { CategoryTag } from "../components/categoryTag";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const EXAMPLE_PRODUCTS: CardForSaleType[] = [
 	{
@@ -50,12 +51,14 @@ const EXAMPLE_PRODUCTS: CardForSaleType[] = [
 ]
 
 export function Home() {
+	const { colors } = useTheme();
+
 	const bottomSheetRef = useRef<BottomSheet>(null);
 
-	const snapPoints = useMemo(() => ['25%', '50%'], []);
+	const snapPoints = useMemo(() => ['70%'], []);
 
 	function handleOpenFiltersBottomSheet() {
-
+		bottomSheetRef.current?.snapToIndex(0)
 	}
 
 	return (
@@ -100,10 +103,11 @@ export function Home() {
 			{/* TODO separar toda essa bottom shet em um component */}
 			<BottomSheet
 				ref={bottomSheetRef}
-				index={1}
+				index={-1}
 				snapPoints={snapPoints}
+				style={{ padding: 24, backgroundColor: colors.gray[600] }}
 			>
-				<HStack alignItems='center' justifyContent='space-between'>
+				<HStack alignItems='center' justifyContent='space-between' mb='6'>
 					<Text
 						color='gray.100'
 						fontSize='20'
@@ -112,29 +116,42 @@ export function Home() {
 						Filtrar anúncios
 					</Text>
 
-					<Icon
-						as={AntDesign}
-						color='gray.400'
-						size='6'
-					/>
+					<TouchableOpacity
+						activeOpacity={0.8}
+						onPress={() => bottomSheetRef.current?.close()}
+					>
+						<Icon
+							as={AntDesign}
+							name="close"
+							color='gray.400'
+							size='6'
+						/>
+					</TouchableOpacity>
 				</HStack>
 
-				<Text
-					color='gray.200'
-					fontSize='14'
-					fontFamily='heading'
-				>
-					Condição
-				</Text>
-				{/* TODO, fazer uma flat list aq pra mostrar as condições do filtro, e dar a possibilidade de excluir filtros */}
-				<CategoryTag
-					category='new'
-				/>
+				<Box mb='6'>
+					<Text
+						color='gray.200'
+						fontSize='14'
+						fontFamily='heading'
+						mb='3'
+					>
+						Condição
+					</Text>
+					{/* TODO, fazer uma flat list aq pra mostrar as condições do filtro, e dar a possibilidade de excluir filtros */}
+					<CategoryTag
+						category='new'
+					/>
+					<CategoryTag
+						category='used'
+					/>
+				</Box>
 
 				<Text
 					color='gray.200'
 					fontSize='14'
 					fontFamily='heading'
+					mb='3'
 				>
 					Aceita troca?
 				</Text>
@@ -144,6 +161,7 @@ export function Home() {
 					color='gray.200'
 					fontSize='14'
 					fontFamily='heading'
+					mb='3'
 				>
 					Meios de pagamento aceitos
 				</Text>
