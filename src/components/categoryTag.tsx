@@ -11,12 +11,12 @@ export function CategoryTag({ category }: Props) {
       h='5'
       rounded='full'
       justifyContent='center'
-      bg={category === 'new' ? 'blue.light' : 'gray.200'}
+      bg={category === 'new' ? 'blue.light' : 'gray.500'}
       mt='1'
       px='2'
     >
       <Text
-        color='gray.700'
+        color={category === 'new' ? 'gray.700' : 'gray.300'}
         fontSize='10'
         fontFamily='heading'
         textTransform='uppercase'
