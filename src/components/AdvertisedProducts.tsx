@@ -33,7 +33,7 @@ export function AdvertisedProducts() {
 
         <HStack flex={1} alignItems='center' justifyContent='flex-end' space='2'>
           <Text
-            color='blue.light'
+            color='blue.default'
             fontSize='12'
             fontFamily='heading'
           >
@@ -42,7 +42,7 @@ export function AdvertisedProducts() {
           <Icon
             as={AntDesign}
             name="arrowright"
-            color='blue.light'
+            color='blue.default'
             size='4'
           />
         </HStack>

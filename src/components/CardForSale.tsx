@@ -20,30 +20,29 @@ export function CardForSale({ product: { title, price, category } }: Props) {
         marginRight: 48
       }}
     >
-      <Box>
-        {/* TODO colocar imagem aq */}
-        <Image
-          source={SaleImgExPng}
-          alt="Imagem do usuário anuciante"
-          rounded='md'
+      <Image
+        source={SaleImgExPng}
+        alt="Imagem do usuário anuciante"
+        rounded='md'
+      />
+      <HStack
+        position='absolute'
+        justifyContent='space-between'
+        w='full'
+        px='1'
+      >
+        <UserPhoto
+          size='7'
+          source={UserExPng}
+          showPencil={false}
         />
-        <HStack
-          position='absolute'
-          justifyContent='space-between'
-          w='full'
-          px='1'
-        >
-          <UserPhoto
-            size='7'
-            source={UserExPng}
-            showPencil={false}
-          />
-          <CategoryTag
-            category={category}
-          />
-        </HStack>
-        {/* Todo criar os componentes de perfil e de usado */}
-      </Box>
+      </HStack>
+      <CategoryTag
+        position='absolute'
+        right={1}
+        category={category}
+      />
+      {/* Todo criar os componentes de perfil e de usado */}
 
       <Text
         color='gray.200'
