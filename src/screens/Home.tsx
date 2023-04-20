@@ -5,7 +5,7 @@ import { AdvertisedProducts } from "../components/AdvertisedProducts";
 import { InputSearch } from "../components/InputSearch";
 import { CardForSale } from "../components/CardForSale";
 import { CardForSaleType } from "../types/CardForSale";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import BottomSheet from '@gorhom/bottom-sheet';
 import { AntDesign } from '@expo/vector-icons';
 import { CategoryTag } from "../components/categoryTag";
@@ -56,6 +56,8 @@ export function Home() {
 	const bottomSheetRef = useRef<BottomSheet>(null);
 
 	const snapPoints = useMemo(() => ['70%'], []);
+
+	const [categorySelected, setCategorySelected] = useState<number>(null);
 
 	function handleOpenFiltersBottomSheet() {
 		bottomSheetRef.current?.snapToIndex(0)
@@ -138,12 +140,21 @@ export function Home() {
 					>
 						Condição
 					</Text>
-					{/* TODO, fazer uma flat list aq pra mostrar as condições do filtro, e dar a possibilidade de excluir filtros */}
-					<CategoryTag
-						category='new'
-					/>
-					<CategoryTag
-						category='used'
+					{/* TODO, fazer uma flat list aq caso existam mais categorias, e dar a possibilidade de excluir filtros */}
+
+					<FlatList
+						data={[{ item: 'new', id: 1 }, { item: 'used', id: 2 }]}
+						renderItem={({ item }) => (
+							<CategoryTag
+								category={item.item === 'new' ? 'new' : 'used'}
+								canBeDeselected={categorySelected === item.id}
+								onPress={() => setCategorySelected(prevState => prevState === item.id ? null : item.id)}
+								px='3'
+								py='2'
+								mr='2'
+							/>
+						)}
+						horizontal
 					/>
 				</Box>
 
@@ -155,8 +166,8 @@ export function Home() {
 				>
 					Aceita troca?
 				</Text>
-				{/* TODO fazer um switch aq */}
 
+				{/* TODO fazer um switch aq */}
 				<Text
 					color='gray.200'
 					fontSize='14'
@@ -166,14 +177,18 @@ export function Home() {
 					Meios de pagamento aceitos
 				</Text>
 				{/* TODO fazer multis checkboxs */}
-				<Button
-					type="gray"
-					title="Resetar filtros"
-				/>
-				<Button
-					type="black"
-					title="Aplicar filtros"
-				/>
+				<HStack space='2'>
+					<Button
+						w='48%'
+						type="gray"
+						title="Resetar filtros"
+					/>
+					<Button
+						w='48%'
+						type="black"
+						title="Aplicar filtros"
+					/>
+				</HStack>
 			</BottomSheet>
 		</VStack>
 	);
