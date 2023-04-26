@@ -7,9 +7,9 @@ import { CardForSale } from "../components/CardForSale";
 import { CardForSaleType } from "../types/CardForSale";
 import { useMemo, useRef, useState } from "react";
 import BottomSheet from '@gorhom/bottom-sheet';
-import { AntDesign } from '@expo/vector-icons';
 import { CategoryTag } from "../components/categoryTag";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { FilterProductSheet } from "../components/FilterProductSheet";
 
 const EXAMPLE_PRODUCTS: CardForSaleType[] = [
 	{
@@ -55,10 +55,6 @@ export function Home() {
 
 	const bottomSheetRef = useRef<BottomSheet>(null);
 
-	const snapPoints = useMemo(() => ['70%'], []);
-
-	const [categorySelected, setCategorySelected] = useState<number>(null);
-
 	function handleOpenFiltersBottomSheet() {
 		bottomSheetRef.current?.snapToIndex(0)
 	}
@@ -93,7 +89,7 @@ export function Home() {
 			<FlatList
 				data={EXAMPLE_PRODUCTS}
 				renderItem={({ item }) => (
-					<CardForSale product={item} />
+					<CardForSale product={item} onPress={() => console.log('navegue até o item selecionado')} />
 				)}
 				contentContainerStyle={{ paddingBottom: 60 }}
 				showsVerticalScrollIndicator={false}
@@ -103,93 +99,9 @@ export function Home() {
 			/>
 
 			{/* TODO separar toda essa bottom shet em um component */}
-			<BottomSheet
-				ref={bottomSheetRef}
-				index={-1}
-				snapPoints={snapPoints}
-				style={{ padding: 24, backgroundColor: colors.gray[600] }}
-			>
-				<HStack alignItems='center' justifyContent='space-between' mb='6'>
-					<Text
-						color='gray.100'
-						fontSize='20'
-						fontFamily='heading'
-					>
-						Filtrar anúncios
-					</Text>
-
-					<TouchableOpacity
-						activeOpacity={0.8}
-						onPress={() => bottomSheetRef.current?.close()}
-					>
-						<Icon
-							as={AntDesign}
-							name="close"
-							color='gray.400'
-							size='6'
-						/>
-					</TouchableOpacity>
-				</HStack>
-
-				<Box mb='6'>
-					<Text
-						color='gray.200'
-						fontSize='14'
-						fontFamily='heading'
-						mb='3'
-					>
-						Condição
-					</Text>
-					{/* TODO, fazer uma flat list aq caso existam mais categorias, e dar a possibilidade de excluir filtros */}
-
-					<FlatList
-						data={[{ item: 'new', id: 1 }, { item: 'used', id: 2 }]}
-						renderItem={({ item }) => (
-							<CategoryTag
-								category={item.item === 'new' ? 'new' : 'used'}
-								canBeDeselected={categorySelected === item.id}
-								onPress={() => setCategorySelected(prevState => prevState === item.id ? null : item.id)}
-								px='3'
-								py='2'
-								mr='2'
-							/>
-						)}
-						horizontal
-					/>
-				</Box>
-
-				<Text
-					color='gray.200'
-					fontSize='14'
-					fontFamily='heading'
-					mb='3'
-				>
-					Aceita troca?
-				</Text>
-
-				{/* TODO fazer um switch aq */}
-				<Text
-					color='gray.200'
-					fontSize='14'
-					fontFamily='heading'
-					mb='3'
-				>
-					Meios de pagamento aceitos
-				</Text>
-				{/* TODO fazer multis checkboxs */}
-				<HStack space='2'>
-					<Button
-						w='48%'
-						type="gray"
-						title="Resetar filtros"
-					/>
-					<Button
-						w='48%'
-						type="black"
-						title="Aplicar filtros"
-					/>
-				</HStack>
-			</BottomSheet>
+			<FilterProductSheet
+				sheetRef={bottomSheetRef}
+			/>
 		</VStack>
 	);
 }
