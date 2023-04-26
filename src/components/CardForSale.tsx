@@ -1,4 +1,4 @@
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { Box, HStack, Image, Text, VStack } from "native-base";
 import { UserPhoto } from "./UserPhoto";
 import SaleImgExPng from '../assets/saleImgEx.png';
@@ -7,11 +7,11 @@ import { CardForSaleType } from "../types/CardForSale";
 import { CategoryTag } from './categoryTag';
 
 // TODO colocar as tipagens
-type Props = {
+type Props = TouchableOpacityProps & {
   product: CardForSaleType
 }
 
-export function CardForSale({ product: { title, price, category } }: Props) {
+export function CardForSale({ product: { title, price, category }, ...rest }: Props) {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
@@ -19,6 +19,7 @@ export function CardForSale({ product: { title, price, category } }: Props) {
         marginBottom: 24,
         marginRight: 48
       }}
+      {...rest}
     >
       <Image
         source={SaleImgExPng}
