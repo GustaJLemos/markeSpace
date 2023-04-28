@@ -7,7 +7,7 @@ import { CardForSale } from "../components/CardForSale";
 import { CardForSaleType } from "../types/CardForSale";
 import { useMemo, useRef, useState } from "react";
 import BottomSheet from '@gorhom/bottom-sheet';
-import { CategoryTag } from "../components/categoryTag";
+import { CategoryTag } from "../components/CategoryTag";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FilterProductSheet } from "../components/FilterProductSheet";
 

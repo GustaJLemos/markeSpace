@@ -10,14 +10,14 @@ type RightIconProps = {
 }
 
 type Props = {
-  title: string;
+  title?: string;
   goBack?: boolean;
   rightIcon?: RightIconProps;
 }
 
 export function Header({ title, goBack = true, rightIcon = {} as RightIconProps }: Props) {
   return (
-    <HStack w='full' bg='gray.700'>
+    <HStack w='full' bg='gray.700' px='6' py='6' alignItems='center'>
       {goBack && (
         <TouchableOpacity onPress={() => console.log('voltando para trás')} activeOpacity={0.8}>
           <Icon
@@ -32,7 +32,9 @@ export function Header({ title, goBack = true, rightIcon = {} as RightIconProps 
         color='gray.100'
         fontSize='20'
         fontFamily='heading'
-        flex={1}
+        flex='1'
+        textAlign='center'
+        mx='2'
       >
         {title}
       </Text>
