@@ -4,7 +4,7 @@ import { Box, FlatList, HStack, Icon, Text } from "native-base";
 import { useMemo, useState } from "react";
 import { Switch, TouchableOpacity } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
-import { CategoryTag } from "./categoryTag";
+import { CategoryTag } from "./CategoryTag";
 import { Button } from "./Button";
 import { THEME } from '../theme';
 import { Checkbox } from './Checkbox';

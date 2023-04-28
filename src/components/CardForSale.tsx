@@ -4,7 +4,7 @@ import { UserPhoto } from "./UserPhoto";
 import SaleImgExPng from '../assets/saleImgEx.png';
 import UserExPng from '../assets/user.png';
 import { CardForSaleType } from "../types/CardForSale";
-import { CategoryTag } from './categoryTag';
+import { CategoryTag } from './CategoryTag';
 
 // TODO colocar as tipagens
 type Props = TouchableOpacityProps & {
