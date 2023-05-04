@@ -1,23 +1,25 @@
-import { Box, HStack, Text, VStack } from "native-base";
+import { Box, HStack, ScrollView, Text, VStack } from "native-base";
 import { Header } from "../components/Header";
 import { Image } from "native-base";
 import { UserPhoto } from "../components/UserPhoto";
 import ProductImagePng from '../assets/productImage.png';
 import UserImagePng from '../assets/user.png';
 import { CategoryTag } from "../components/CategoryTag";
+import { PaymentOptions } from "../components/PaymentOptions";
 
 export function ProductDetails() {
   return (
     <VStack w='full' h='full' bg='gray.700'>
       <Header
         goBack
+        title="Detalhes do produto"
       />
       <Image
         source={ProductImagePng}
         alt="Imagem do produto"
         w='full'
       />
-      <Box px='6' py='2' flex={1}>
+      <ScrollView px='6' py='2' flex={1}>
         <HStack alignItems='center' justifyContent='center' mb='6'>
           <UserPhoto
             source={UserImagePng}
@@ -37,7 +39,7 @@ export function ProductDetails() {
         </HStack>
         <CategoryTag category="new" w='12' />
 
-        <VStack flex={1}>
+        <VStack flex={1} mb='20'>
           <Text
             color='gray.100'
             fontSize='20'
@@ -67,8 +69,6 @@ export function ProductDetails() {
             <Text fontFamily='body'> Sim</Text>
           </Text>
 
-          {/*   TODO terminar de desenvolver os icones aq */}
-          {/* TODO seria interessante colocar um scroll aq ao invbes dessa box em torno de todo esse conteúdo do anúncio */}
           <Text
             color='gray.200'
             fontSize='14'
@@ -78,13 +78,15 @@ export function ProductDetails() {
           >
             Meios de pagamento:
           </Text>
-          <Text color='gray.200' fontSize='14' fontFamily='body'>Boleto</Text>
-          <Text color='gray.200' fontSize='14' fontFamily='body'>Pix</Text>
-          <Text color='gray.200' fontSize='14' fontFamily='body'>Dinheiro</Text>
-          <Text color='gray.200' fontSize='14' fontFamily='body'>Cartão de crédito</Text>
-          <Text color='gray.200' fontSize='14' fontFamily='body'>Boleto bancário</Text>
+          <PaymentOptions option="boleto" />
+          <PaymentOptions option="pix" />
+          <PaymentOptions option="dinheiro" />
+          <PaymentOptions option="credito" />
+          <PaymentOptions option="deposito" />
         </VStack>
-      </Box>
+      </ScrollView>
+
+      {/* TODO fazer o botao com o preço e entrar em contato */}
     </VStack>
   );
 }
