@@ -1,15 +1,15 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Button as NativeBaseButton, Center, IButtonProps, Text, IIconProps, Icon, HStack } from 'native-base';
+import { Button as NativeBaseButton, IButtonProps, Text, Icon, HStack } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 
 type Props = IButtonProps & {
   title: string;
   type: 'blue' | 'gray' | 'black',
   iconName?: string,
+  icon?: JSX.Element,
 }
 
-export function Button({ title, type, iconName = '', ...rest }: Props) {
+export function Button({ title, type, iconName = '', icon, ...rest }: Props) {
 
   const selectFontColorByType = () => {
     let selectedColor: string;
@@ -55,6 +55,7 @@ export function Button({ title, type, iconName = '', ...rest }: Props) {
         space='1'
       >
         {iconName && <Icon as={MaterialIcons} name={iconName} color={selectFontColorByType()} />}
+        {icon && icon}
         <Text
           color={selectFontColorByType()}
           fontFamily='heading'
