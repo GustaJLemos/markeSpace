@@ -11,7 +11,7 @@ import { CategoryTag } from "../components/CategoryTag";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FilterProductSheet } from "../components/FilterProductSheet";
 
-const EXAMPLE_PRODUCTS: CardForSaleType[] = [
+export const EXAMPLE_PRODUCTS: CardForSaleType[] = [
 	{
 		id: '1',
 		title: 'Tenis',
