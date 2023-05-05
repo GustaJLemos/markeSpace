@@ -8,10 +8,11 @@ import { CategoryTag } from './CategoryTag';
 
 // TODO colocar as tipagens
 type Props = TouchableOpacityProps & {
-  product: CardForSaleType
+  product: CardForSaleType,
+  disabled: boolean,
 }
 
-export function CardForSale({ product: { title, price, category }, ...rest }: Props) {
+export function CardForSale({ product: { title, price, category }, disabled, ...rest }: Props) {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
@@ -21,11 +22,24 @@ export function CardForSale({ product: { title, price, category }, ...rest }: Pr
       }}
       {...rest}
     >
+      {/* TODO continuar desenvolvendo o anúncio desativado */}
       <Image
         source={SaleImgExPng}
         alt="Imagem do usuário anuciante"
         rounded='md'
       />
+      {disabled && (
+        <Text
+          color='gray.700'
+          fontSize='11'
+          fontFamily='heading'
+          position='absolute'
+          bottom={50}
+          ml='2'
+        >
+          ANÚNCIO DESATIVADO
+        </Text>
+      )}
       <HStack
         position='absolute'
         justifyContent='space-between'
@@ -46,7 +60,7 @@ export function CardForSale({ product: { title, price, category }, ...rest }: Pr
       {/* Todo criar os componentes de perfil e de usado */}
 
       <Text
-        color='gray.200'
+        color={disabled ? 'gray.400' : 'gray.200'}
         fontSize='14'
         fontFamily='body'
       >
@@ -54,13 +68,13 @@ export function CardForSale({ product: { title, price, category }, ...rest }: Pr
       </Text>
 
       <Text
-        color='gray.100'
+        color={disabled ? 'gray.400' : 'gray.100'}
         fontSize='12'
         fontFamily='heading'
       >
         R$
         <Text
-          color='gray.100'
+          color={disabled ? 'gray.400' : 'gray.100'}
           fontSize='16'
           fontFamily='heading'
         >
