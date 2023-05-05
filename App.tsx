@@ -8,6 +8,7 @@ import { Loading } from './src/components/Loading';
 import { SignUp } from './src/screens/SignUp';
 import { Home } from './src/screens/Home';
 import { ProductDetails } from './src/screens/ProductDetails';
+import { MyAdvertises } from './src/screens/MyAdvertises';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Karla_400Regular, Karla_700Bold });
@@ -15,7 +16,7 @@ export default function App() {
   return (
     <Providers>
       {fontsLoaded ? (
-        <ProductDetails />
+        <MyAdvertises />
       ) : <Loading />}
     </Providers>
   );
