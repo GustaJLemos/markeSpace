@@ -1,4 +1,4 @@
-import { Box, HStack, ScrollView, Text, VStack } from "native-base";
+import { Box, HStack, ScrollView, Text, VStack, useTheme } from "native-base";
 import { Header } from "../components/Header";
 import { Image } from "native-base";
 import { UserPhoto } from "../components/UserPhoto";
@@ -6,10 +6,14 @@ import ProductImagePng from '../assets/productImage.png';
 import UserImagePng from '../assets/user.png';
 import { CategoryTag } from "../components/CategoryTag";
 import { PaymentOptions } from "../components/PaymentOptions";
+import { Button } from "../components/Button";
+import { WhatsappLogo } from 'phosphor-react-native';
 
 export function ProductDetails() {
+  const { colors } = useTheme();
+
   return (
-    <VStack w='full' h='full' bg='gray.700'>
+    <VStack w='full' h='full' bg='gray.600'>
       <Header
         goBack
         title="Detalhes do produto"
@@ -86,7 +90,33 @@ export function ProductDetails() {
         </VStack>
       </ScrollView>
 
-      {/* TODO fazer o botao com o preço e entrar em contato */}
+      <Box>
+        <HStack
+          bg='gray.700'
+          w='full'
+          px='6'
+          pb='4'
+          justifyContent='space-between'
+          alignItems='center'
+        >
+          <Text
+            color='blue.default'
+            fontSize='14'
+            fontFamily='heading'
+            pt='2'
+          >
+            R$ <Text fontSize='24'>120,00</Text>
+          </Text>
+
+          <Button
+            type="blue"
+            title="Entrar em contato"
+            icon={<WhatsappLogo size={20} weight='fill' color={colors.gray[600]} />}
+            w='48'
+            alignSelf='center'
+          />
+        </HStack>
+      </Box>
     </VStack>
   );
 }
