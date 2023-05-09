@@ -30,11 +30,15 @@ export function CardForSale({ product: { title, price, category }, disabled, ...
       />
       {disabled && (
         <Text
+          flex={1}
+          bg='gray.300'
           color='gray.700'
           fontSize='11'
           fontFamily='heading'
           position='absolute'
           bottom={50}
+          borderRadius={16}
+          p='1'
           ml='2'
         >
           ANÚNCIO DESATIVADO
