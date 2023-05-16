@@ -11,7 +11,7 @@ export function MyAdvertises() {
   const { colors } = useTheme();
 
   return (
-    <VStack w='full' h='full' bg='gray.700'>
+    <VStack w='full' h='full' bg='gray.600'>
       <Header
         goBack={false}
         title="Meus anúncios"

@@ -17,7 +17,7 @@ type Props = {
 
 export function Header({ title, goBack = true, rightIcon = {} as RightIconProps }: Props) {
   return (
-    <HStack w='full' bg='gray.700' px='6' py='6' alignItems='center'>
+    <HStack w='full' bg='gray.600' px='6' py='6' alignItems='center'>
       {goBack && (
         <TouchableOpacity onPress={() => console.log('voltando para trás')} activeOpacity={0.8}>
           <Icon
