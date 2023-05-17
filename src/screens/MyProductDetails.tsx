@@ -6,37 +6,112 @@ import UserImagePng from '../assets/user.png';
 import { CategoryTag } from "../components/CategoryTag";
 import { PaymentOptions } from "../components/PaymentOptions";
 import { Button } from "../components/Button";
-import { Tag } from 'phosphor-react-native'
+import { Power, Tag, TrashSimple } from 'phosphor-react-native'
 import { AntDesign } from '@expo/vector-icons';
+import { Header } from "../components/Header";
+import { PencilSimpleLine } from "phosphor-react-native";
 
-export function MyProductDetails() {
+type Props = {
+  interfacetype: 'preview' | 'actived' | 'desactived'
+}
+
+export function MyProductDetails({ interfacetype }: Props) {
   const { colors } = THEME;
+
+  const renderHeader = () => {
+    if (interfacetype === 'preview') {
+      return (
+        <>
+          <StatusBar
+            barStyle='light-content'
+            backgroundColor={colors.blue.light}
+            translucent
+          />
+          <VStack w='full' bg='blue.light' py='8'>
+            <Text
+              color='gray.700'
+              fontFamily='heading'
+              fontSize='16'
+              textAlign='center'
+            >
+              Pré visualização do anúncio
+            </Text>
+            <Text
+              color='gray.700'
+              fontFamily='body'
+              fontSize='14'
+              textAlign='center'
+            >
+              É assim que seu produto vai aparecer!
+            </Text>
+          </VStack>
+        </>
+      )
+    }
+
+    if (interfacetype === 'actived' || 'desactived') {
+      return (
+        <Header
+          title="Detalhes do produto"
+          rightIcon={{
+            icon: <PencilSimpleLine size={22} color={colors.gray[100]} />,
+            onIconPress: () => console.log('Navegando até a edição')
+          }}
+          goBack
+        />
+      )
+    }
+  }
+
+  const renderFooter = () => {
+    if (interfacetype === 'preview') {
+      return (
+        <HStack
+          space='2'
+        >
+          <Button
+            type="gray"
+            title="Voltar e editar"
+            icon={<AntDesign name="arrowleft" size={18} color={colors.gray[200]} />}
+            w='48%'
+            alignSelf='center'
+          />
+
+          <Button
+            type="blue"
+            title="Publicar"
+            icon={<Tag size={18} color={colors.gray[600]} />}
+            w='48%'
+            alignSelf='center'
+          />
+        </HStack>
+      )
+    }
+
+    if (interfacetype === 'actived' || 'desactived') {
+      return (
+        <>
+          <Button
+            type={interfacetype === 'actived' ? "black" : "blue"}
+            title={interfacetype === 'actived' ? "Desativar anúncio" : "Reativar anúncio"}
+            icon={<Power size={18} color={colors.gray[600]} />}
+            alignSelf='center'
+          />
+
+          <Button
+            type="gray"
+            title="Excluir anúncio"
+            icon={<TrashSimple size={18} color={colors.gray[300]} />}
+            alignSelf='center'
+          />
+        </>
+      )
+    }
+  }
 
   return (
     <>
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor={colors.blue.light}
-        translucent
-      />
-      <VStack w='full' bg='blue.light' py='8'>
-        <Text
-          color='gray.700'
-          fontFamily='heading'
-          fontSize='16'
-          textAlign='center'
-        >
-          Pré visualização do anúncio
-        </Text>
-        <Text
-          color='gray.700'
-          fontFamily='body'
-          fontSize='14'
-          textAlign='center'
-        >
-          É assim que seu produto vai aparecer!
-        </Text>
-      </VStack>
+      {renderHeader()}
       <Image
         source={MyProductImagePng}
         alt='Imagem do produto'
@@ -105,26 +180,7 @@ export function MyProductDetails() {
         </Text>
         <PaymentOptions option="boleto" />
         <PaymentOptions option="pix" />
-
-        <HStack
-          space='2'
-        >
-          <Button
-            type="gray"
-            title="Voltar e editar"
-            icon={<AntDesign name="arrowleft" size={18} color={colors.gray[200]} />}
-            w='48%'
-            alignSelf='center'
-          />
-
-          <Button
-            type="blue"
-            title="Publicar"
-            icon={<Tag size={18} color={colors.gray[600]} />}
-            w='48%'
-            alignSelf='center'
-          />
-        </HStack>
+        {renderFooter()}
       </VStack >
     </>
   );
