@@ -18,7 +18,7 @@ export default function App() {
   return (
     <Providers>
       {fontsLoaded ? (
-        <MyProductDetails interfacetype='preview' />
+        <MyProductDetails interfacetype='desactived' />
       ) : <Loading />}
     </Providers>
   );

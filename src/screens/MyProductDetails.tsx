@@ -1,4 +1,4 @@
-import { HStack, Image, ScrollView, StatusBar, Text, VStack } from "native-base";
+import { Box, HStack, Image, ScrollView, StatusBar, Text, VStack } from "native-base";
 import { THEME } from "../theme";
 import MyProductImagePng from '../assets/myProductImage.png'
 import { UserPhoto } from "../components/UserPhoto";
@@ -110,78 +110,80 @@ export function MyProductDetails({ interfacetype }: Props) {
   }
 
   return (
-    <>
+    <VStack w='100%' h='100%'>
       {renderHeader()}
       <Image
         source={MyProductImagePng}
         alt='Imagem do produto'
         style={{ width: '100%' }}
       />
-      <VStack h='full' px='4' bg='gray.600'>
 
-        {/* TODO colocar uma scrollView funcional */}
-        <HStack alignItems='center' justifyContent='center' mb='6'>
-          <UserPhoto
-            source={UserImagePng}
-            showPencil={false}
-            size='7'
-          />
+      {/* TODO colocar uma scrollView funcional */}
+      <Box flex={1} px='2' pt='4'>
+        <ScrollView w='100%' h='100%' showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 36 }}>
+          <HStack alignItems='center' justifyContent='center'>
+            <UserPhoto
+              source={UserImagePng}
+              showPencil={false}
+              size='7'
+            />
+            <Text
+              color='gray.100'
+              fontSize='14'
+              fontFamily='body'
+              ml='1'
+              numberOfLines={1}
+              flex={1}
+            >
+              Gustavo Mendes
+            </Text>
+          </HStack>
+          <CategoryTag category="new" w='12' mb='6' />
+
           <Text
             color='gray.100'
+            fontSize='20'
+            fontFamily='heading'
+            numberOfLines={1}
+            my='2'
+          >
+            Bicicleta
+          </Text>
+          <Text
+            color='gray.200'
             fontSize='14'
             fontFamily='body'
-            ml='1'
-            numberOfLines={1}
-            flex={1}
+            mb='2'
           >
-            Gustavo Mendes
+
+            Cras congue cursus in tortor sagittis placerat nunc, tellus arcu. Vitae ante leo eget maecenas urna mattis cursus. Mauris metus amet nibh mauris mauris accumsan, euismod. Aenean leo nunc, purus iaculis in aliquam.
           </Text>
-        </HStack>
-        <CategoryTag category="new" w='12' />
 
-        <Text
-          color='gray.100'
-          fontSize='20'
-          fontFamily='heading'
-          numberOfLines={1}
-          my='2'
-        >
-          Bicicleta
-        </Text>
-        <Text
-          color='gray.200'
-          fontSize='14'
-          fontFamily='body'
-          mb='2'
-        >
+          <Text
+            color='gray.200'
+            fontSize='14'
+            fontFamily='heading'
+            numberOfLines={1}
+            my='2'
+          >
+            Aceita troca?
+            <Text fontFamily='body'> Sim</Text>
+          </Text>
 
-          Cras congue cursus in tortor sagittis placerat nunc, tellus arcu. Vitae ante leo eget maecenas urna mattis cursus. Mauris metus amet nibh mauris mauris accumsan, euismod. Aenean leo nunc, purus iaculis in aliquam.
-        </Text>
-
-        <Text
-          color='gray.200'
-          fontSize='14'
-          fontFamily='heading'
-          numberOfLines={1}
-          my='2'
-        >
-          Aceita troca?
-          <Text fontFamily='body'> Sim</Text>
-        </Text>
-
-        <Text
-          color='gray.200'
-          fontSize='14'
-          fontFamily='heading'
-          numberOfLines={1}
-          my='2'
-        >
-          Meios de pagamento:
-        </Text>
-        <PaymentOptions option="boleto" />
-        <PaymentOptions option="pix" />
+          <Text
+            color='gray.200'
+            fontSize='14'
+            fontFamily='heading'
+            numberOfLines={1}
+            my='2'
+          >
+            Meios de pagamento:
+          </Text>
+          <PaymentOptions option="boleto" />
+          <PaymentOptions option="pix" />
+        </ScrollView >
         {renderFooter()}
-      </VStack >
-    </>
+      </Box>
+    </VStack >
   );
 }
