@@ -5,19 +5,29 @@ import { TouchableOpacity } from "react-native";
 import { Input } from "../components/Input";
 import { Checkbox } from "../components/Checkbox";
 import { PaymentOptions } from "../components/PaymentOptions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { THEME } from "../theme";
 import { Button } from "../components/Button";
 
-export function CreateAdvertise() {
+type Props = {
+  editAdvertise?: boolean;
+}
+
+export function CreateAdvertise({ editAdvertise = false }: Props) {
   const { colors } = THEME;
 
   const [acceptTrade, setAcceptTrade] = useState(false);
 
+  useEffect(() => {
+    if (editAdvertise) {
+      console.log('Função para popular o form')
+    }
+  }, [])
+
   return (
     <VStack w='full' h='full' bg='gray.600'>
       <Header
-        title="Criar anúncio"
+        title={editAdvertise ? "Editar Anúncio" : "Criar anúncio"}
         goBack
       />
 

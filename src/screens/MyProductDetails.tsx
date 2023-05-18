@@ -3,13 +3,13 @@ import { THEME } from "../theme";
 import MyProductImagePng from '../assets/myProductImage.png'
 import { UserPhoto } from "../components/UserPhoto";
 import UserImagePng from '../assets/user.png';
-import { CategoryTag } from "../components/CategoryTag";
 import { PaymentOptions } from "../components/PaymentOptions";
 import { Button } from "../components/Button";
 import { Power, Tag, TrashSimple } from 'phosphor-react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { Header } from "../components/Header";
 import { PencilSimpleLine } from "phosphor-react-native";
+import { CategoryTag } from "../components/CategoryTag";
 
 type Props = {
   interfacetype: 'preview' | 'actived' | 'desactived'
