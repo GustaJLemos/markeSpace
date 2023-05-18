@@ -11,6 +11,7 @@ import { ProductDetails } from './src/screens/ProductDetails';
 import { MyAdvertises } from './src/screens/MyAdvertises';
 import { CreateAdvertise } from './src/screens/CreateAdvertise';
 import { MyProductDetails } from './src/screens/MyProductDetails';
+import { Routes } from './src/routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Karla_400Regular, Karla_700Bold });
@@ -18,7 +19,7 @@ export default function App() {
   return (
     <Providers>
       {fontsLoaded ? (
-        <MyProductDetails interfacetype='desactived' />
+        <Routes />
       ) : <Loading />}
     </Providers>
   );
