@@ -10,13 +10,25 @@ import { AntDesign } from '@expo/vector-icons';
 import { Header } from "../components/Header";
 import { PencilSimpleLine } from "phosphor-react-native";
 import { CategoryTag } from "../components/CategoryTag";
+import { useNavigation } from "@react-navigation/native";
+import { useEffect } from "react";
 
+// TODO passar o preview por rouyte params, e o active ou desactive pegar do back
 type Props = {
   interfacetype: 'preview' | 'actived' | 'desactived'
 }
 
-export function MyProductDetails({ interfacetype }: Props) {
+export function MyProductDetails({ interfacetype = 'preview' }: Props) {
   const { colors } = THEME;
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
+  useEffect(() => {
+    // TODO pegar as info q ver do anúncio, se tá ativo ou n
+  })
 
   const renderHeader = () => {
     if (interfacetype === 'preview') {
@@ -49,6 +61,8 @@ export function MyProductDetails({ interfacetype }: Props) {
       )
     }
 
+    // TODO tirar a tab navigator daq
+
     if (interfacetype === 'actived' || 'desactived') {
       return (
         <Header
@@ -75,6 +89,7 @@ export function MyProductDetails({ interfacetype }: Props) {
             icon={<AntDesign name="arrowleft" size={18} color={colors.gray[200]} />}
             w='48%'
             alignSelf='center'
+            onPress={handleGoBack}
           />
 
           <Button

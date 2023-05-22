@@ -4,18 +4,26 @@ import { EXAMPLE_PRODUCTS } from "./Home";
 import { CardForSale } from "../components/CardForSale";
 import SelectDropdown from 'react-native-select-dropdown'
 import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
+import { HomeNavigatorRoutesProps } from "../routes/app.routes";
 
 const ADVERTISE_OPTIONS = ['Todos', 'Novos', 'Usados', 'Favoritos']
 
 export function MyAdvertises() {
   const { colors } = useTheme();
 
+  const navigation = useNavigation<HomeNavigatorRoutesProps>();
+
+  function handleNavigateToAddNewAdvertise() {
+    navigation.navigate('CreateAdvertiseScreen')
+  }
+
   return (
     <VStack w='full' h='full' bg='gray.600'>
       <Header
         goBack={false}
         title="Meus anúncios"
-        rightIcon={{ iconName: 'add', onIconPress: () => console.log('adicionar anuncio') }}
+        rightIcon={{ iconName: 'add', onIconPress: handleNavigateToAddNewAdvertise }}
       />
 
       <Box px='6' py='2'>
@@ -53,7 +61,7 @@ export function MyAdvertises() {
             }}
             dropdownStyle={{ borderRadius: 8 }}
             buttonTextStyle={{ color: colors.gray[300] }}
-            buttonStyle={{ backgroundColor: colors.gray[700], borderWidth: 1, borderRadius: 16, borderColor: colors.gray[500] }}
+            buttonStyle={{ backgroundColor: colors.gray[600], borderWidth: 1, borderRadius: 16, borderColor: colors.gray[500] }}
           />
         </HStack>
 

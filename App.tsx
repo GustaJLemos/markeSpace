@@ -1,7 +1,7 @@
 import { Box, NativeBaseProvider, StatusBar, useTheme } from 'native-base';
 import React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Providers } from './src/contexts/Providers';
+import { Providers } from './src/contexts/providers';
 import { useFonts, Karla_700Bold, Karla_400Regular } from '@expo-google-fonts/karla';
 import { SignIn } from './src/screens/SignIn';
 import { Loading } from './src/components/Loading';

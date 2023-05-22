@@ -10,6 +10,8 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import { CategoryTag } from "../components/CategoryTag";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FilterProductSheet } from "../components/FilterProductSheet";
+import { useNavigation } from "@react-navigation/native";
+import { AppNavigatorRoutesProps, HomeNavigatorRoutesProps } from "../routes/app.routes";
 
 export const EXAMPLE_PRODUCTS: CardForSaleType[] = [
 	{
@@ -51,12 +53,15 @@ export const EXAMPLE_PRODUCTS: CardForSaleType[] = [
 ]
 
 export function Home() {
-	const { colors } = useTheme();
-
+	const navigation = useNavigation<HomeNavigatorRoutesProps>();
 	const bottomSheetRef = useRef<BottomSheet>(null);
 
 	function handleOpenFiltersBottomSheet() {
 		bottomSheetRef.current?.snapToIndex(0)
+	}
+
+	function handleNavigateToProductDetails() {
+		navigation.navigate('AdvertiseDetailsScreen')
 	}
 
 	return (
@@ -88,8 +93,12 @@ export function Home() {
 			{/* TODO ver a parada de suavizar as bordas de cima da flat lsit */}
 			<FlatList
 				data={EXAMPLE_PRODUCTS}
-				renderItem={({ item }) => (
-					<CardForSale product={item} onPress={() => console.log('navegue até o item selecionado')} />
+				renderItem={({ item, index }) => (
+					<CardForSale
+						product={item}
+						onPress={() => handleNavigateToProductDetails()}
+						disabled={EXAMPLE_PRODUCTS.length === index}
+					/>
 				)}
 				contentContainerStyle={{ paddingBottom: 60 }}
 				showsVerticalScrollIndicator={false}

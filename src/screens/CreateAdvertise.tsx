@@ -8,15 +8,26 @@ import { PaymentOptions } from "../components/PaymentOptions";
 import { useEffect, useState } from "react";
 import { THEME } from "../theme";
 import { Button } from "../components/Button";
+import { useNavigation } from "@react-navigation/native";
+import { HomeNavigatorRoutesProps } from "../routes/app.routes";
 
+// TYPE passaaer esse cara aq por route props
 type Props = {
   editAdvertise?: boolean;
 }
 
 export function CreateAdvertise({ editAdvertise = false }: Props) {
   const { colors } = THEME;
-
+  const navigation = useNavigation<HomeNavigatorRoutesProps>();
   const [acceptTrade, setAcceptTrade] = useState(false);
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
+  function handleNavigateToMyProductDetails() {
+    navigation.navigate('MyProductDetailsScreen', editAdvertise && { interfaceType: 'preview' })
+  }
 
   useEffect(() => {
     if (editAdvertise) {
@@ -120,16 +131,19 @@ export function CreateAdvertise({ editAdvertise = false }: Props) {
         <Checkbox title='Cartão de crédito' />
         <Checkbox title='Boleto bancário' />
 
+        {/* TODO tirar tab navigator */}
         <HStack space='2' mt='10'>
           <Button
             w='48%'
             type="gray"
             title="Cancelar"
+            onPress={handleGoBack}
           />
           <Button
             w='48%'
             type="black"
             title="Avançar"
+            onPress={handleNavigateToMyProductDetails}
           />
         </HStack>
       </ScrollView>
