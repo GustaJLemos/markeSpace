@@ -1,6 +1,7 @@
-import { Box, HStack, Image, ScrollView, StatusBar, Text, VStack } from "native-base";
+import { Box, FlatList, HStack, Image, ScrollView, StatusBar, Text, VStack } from "native-base";
 import { THEME } from "../theme";
 import MyProductImagePng from '../assets/myProductImage.png'
+import ProductImagePng from '../assets/productImage.png';
 import { UserPhoto } from "../components/UserPhoto";
 import UserImagePng from '../assets/user.png';
 import { PaymentOptions } from "../components/PaymentOptions";
@@ -12,6 +13,12 @@ import { PencilSimpleLine } from "phosphor-react-native";
 import { CategoryTag } from "../components/CategoryTag";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
+
+const MOCK_PRODUCT_IMAGES = [
+  { asset: MyProductImagePng, id: 1 },
+  { asset: ProductImagePng, id: 2 },
+  { asset: MyProductImagePng, id: 3 },
+]
 
 // TODO passar o preview por rouyte params, e o active ou desactive pegar do back
 type Props = {
@@ -124,6 +131,7 @@ export function MyProductDetails({ interfacetype = 'preview' }: Props) {
     }
   }
 
+  // TODO terminar de fazer o carrossel
   return (
     <VStack w='100%' h='100%'>
       {renderHeader()}
@@ -132,6 +140,7 @@ export function MyProductDetails({ interfacetype = 'preview' }: Props) {
         alt='Imagem do produto'
         style={{ width: '100%' }}
       />
+
 
       {/* TODO colocar uma scrollView funcional */}
       <Box flex={1} px='2' pt='4'>

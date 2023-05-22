@@ -108,8 +108,7 @@ export function ProductDetails() {
             R$ <Text fontSize='24'>120,00</Text>
           </Text>
 
-          {/* TODO fazer função aq */}
-          {/* TODO tirar a tab navigtator aq */}
+          {/* TODO fazer o link pelo wahat */}
           <Button
             type="blue"
             title="Entrar em contato"
